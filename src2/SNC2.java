@@ -66,7 +66,7 @@ public class SNC2 {
 		System.out.println();
 
 		dos("Solving problem");
-		if (solve(-distance + 1, 0))
+		if (solve(-1, 0))
 			done("found solution");
 		else done("deemed impossible");
 
@@ -85,7 +85,7 @@ public class SNC2 {
 		if (index < 0)
 			return false;
 		// System.out.println("75");
-		if (option == distance) {
+		if (option == 2) {
 			if (saveIndex <= 1)
 				return false;
 			// System.out.println(saveIndex + " " + index);
@@ -99,7 +99,7 @@ public class SNC2 {
 		if (!playMove(option, index)) {
 			// System.out.println("86");
 			reload();
-			if (solve(option == -1 ? 1:(option + 1), index))
+			if (option == -1 && solve(1, index))
 				return true;
 			else {
 				if (saveIndex <= 1)
@@ -114,7 +114,7 @@ public class SNC2 {
 		if (!playForcedMoves()) {
 			// System.out.println("Force impossible");
 			reload();
-			if (solve(option == -1 ? 1:(option + 1), index))
+			if (option == -1 && solve(1, index))
 				return true;
 			else {
 				undo();
@@ -128,11 +128,11 @@ public class SNC2 {
 		// System.out.println("99");
 		save();
 		// System.out.println("!!! " + directions[0][1]);
-		if (solve(-distance + 1, directions[0][1]))
+		if (solve(-1, directions[0][1]))
 			return true;
 		else {
 			reload();
-			if (solve(option == -1 ? 1:(option + 1), index))
+			if (option == -1 && solve(1, index))
 				return true;
 			else {
 				if (saveIndex <= 1)
